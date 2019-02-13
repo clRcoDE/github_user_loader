@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import connect from 'react-redux'
+import { View, Text, StyleSheet, FlatList ,TouchableHighlight , Image} from 'react-native';
+import {connect} from 'react-redux'
 
 // create a component
 class UserLoader extends Component {
@@ -10,11 +10,11 @@ class UserLoader extends Component {
             <View style={styles.container}>
                 <FlatList
                     data={this.props.items}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.node_id}
                     renderItem={({ item, index }) =>
-                        <View style={styles.listElement}>
+                        <TouchableHighlight style={styles.listElement} onPress={()=>{}} underlayColor='#ddd' >
                             <Text>{item.login}</Text>
-                        </View>
+                        </TouchableHighlight>
                     }
                 />
             </View>
@@ -25,13 +25,23 @@ class UserLoader extends Component {
 // define your styles
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#999',
+        flex: 2,
+        backgroundColor: '#fff',
     },
+    listElement:{
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height:150,
+        margin:10,
+        borderRadius:5,
+        elevation:5,
+
+    }
 });
 
 
-const mapStateToProps = () => {
+const mapStateToProps = state => {
     return {
         items: state.items
     }

@@ -24,15 +24,15 @@ export default rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                item: action.payload
+                items: action.payload
 
             }
         case GET_USERS_FAILURE:
             return {
                 ...state,
-                error: getErrorMessage(),
+                error:action.payload,
                 loading: false,
-                item: []
+                items: []
             }
         default:
             return state
